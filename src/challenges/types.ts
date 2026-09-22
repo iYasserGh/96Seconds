@@ -3,7 +3,14 @@ import type { RandomSource } from "@/game/random"
 export const challengeTypes = [
   "odd-one-out",
   "color-clash",
+  "number-sequence",
   "quick-math",
+  "memory-grid",
+  "number-order",
+  "count-it",
+  "greater-side",
+  "direction",
+  "missing-pattern",
 ] as const
 
 export type ChallengeType = (typeof challengeTypes)[number]
@@ -59,10 +66,107 @@ export type QuickMathChallenge = ChallengeBase<
   number
 >
 
+export type SequenceFamily = "step" | "multiply" | "alternating"
+
+export type NumberSequenceChallenge = ChallengeBase<
+  "number-sequence",
+  {
+    sequence: number[]
+    choices: number[]
+    family: SequenceFamily
+  },
+  number
+>
+
+export type MemoryGridChallenge = ChallengeBase<
+  "memory-grid",
+  {
+    columns: number
+    total: number
+    highlightedCells: number[]
+    previewDuration: number
+  },
+  number[]
+>
+
+export type NumberOrderChallenge = ChallengeBase<
+  "number-order",
+  {
+    values: number[]
+  },
+  number[]
+>
+
+export type ShapeName = "دائرة" | "مربع" | "مثلث" | "معيّن"
+
+export interface ShapeToken {
+  name: ShapeName
+  glyph: string
+}
+
+export type CountItChallenge = ChallengeBase<
+  "count-it",
+  {
+    target: ShapeToken
+    gridItems: ShapeToken[]
+    choices: number[]
+    columns: number
+  },
+  number
+>
+
+export type Side = "right" | "left"
+
+export type GreaterSideChallenge = ChallengeBase<
+  "greater-side",
+  {
+    leftCount: number
+    rightCount: number
+    glyph: string
+  },
+  Side
+>
+
+export type Direction = "up" | "down" | "left" | "right"
+
+export type DirectionChallenge = ChallengeBase<
+  "direction",
+  {
+    instruction: "same" | "opposite"
+    shownDirection: Direction
+    choices: Direction[]
+  },
+  Direction
+>
+
+export type PatternFamily =
+  | "abab"
+  | "aabaab"
+  | "rotation"
+  | "increasing-count"
+  | "alternating-fill"
+
+export type MissingPatternChallenge = ChallengeBase<
+  "missing-pattern",
+  {
+    family: PatternFamily
+    items: string[]
+    choices: string[]
+  },
+  string
+>
+
 export type Challenge =
   | OddOneOutChallenge
   | ColorClashChallenge
+  | NumberSequenceChallenge
   | QuickMathChallenge
+  | MemoryGridChallenge
+  | NumberOrderChallenge
+  | CountItChallenge
+  | GreaterSideChallenge
+  | DirectionChallenge
+  | MissingPatternChallenge
 
 export interface ChallengeGenerator<TChallenge extends Challenge> {
   type: TChallenge["type"]
