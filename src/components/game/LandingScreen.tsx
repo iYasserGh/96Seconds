@@ -1,4 +1,4 @@
-import { Info, Moon, Volume2 } from "lucide-react"
+import { Info, Moon, Sun, Volume2, VolumeX } from "lucide-react"
 import { useRef } from "react"
 
 import logoUrl from "../../../assets/brand/logo.png"
@@ -9,9 +9,19 @@ import { Button } from "@/components/ui/Button"
 
 interface LandingScreenProps {
   onStart(): void
+  soundEnabled: boolean
+  onToggleSound(): void
+  resolvedTheme: "light" | "dark"
+  onToggleTheme(): void
 }
 
-export function LandingScreen({ onStart }: LandingScreenProps) {
+export function LandingScreen({
+  onStart,
+  soundEnabled,
+  onToggleSound,
+  resolvedTheme,
+  onToggleTheme,
+}: LandingScreenProps) {
   const dialogRef = useRef<HowToPlayDialogHandle>(null)
 
   return (
@@ -19,11 +29,22 @@ export function LandingScreen({ onStart }: LandingScreenProps) {
       <header className="flex items-center justify-between gap-3">
         <img src={nationalDayLogoUrl} alt="عزنا بطبعنا" className="h-8 w-auto sm:h-10" />
         <nav aria-label="إعدادات سريعة" className="flex gap-2">
-          <Button variant="secondary" size="icon" aria-label="تفعيل الصوت">
-            <Volume2 aria-hidden="true" size={20} />
+          <Button
+            variant="secondary"
+            size="icon"
+            aria-label={soundEnabled ? "إيقاف الصوت" : "تفعيل الصوت"}
+            aria-pressed={soundEnabled}
+            onClick={onToggleSound}
+          >
+            {soundEnabled ? <Volume2 aria-hidden="true" size={20} /> : <VolumeX aria-hidden="true" size={20} />}
           </Button>
-          <Button variant="secondary" size="icon" aria-label="تفعيل الوضع الداكن">
-            <Moon aria-hidden="true" size={20} />
+          <Button
+            variant="secondary"
+            size="icon"
+            aria-label={resolvedTheme === "dark" ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن"}
+            onClick={onToggleTheme}
+          >
+            {resolvedTheme === "dark" ? <Sun aria-hidden="true" size={20} /> : <Moon aria-hidden="true" size={20} />}
           </Button>
           <Button
             variant="secondary"
