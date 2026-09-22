@@ -33,6 +33,25 @@
   --primary-foreground: #ffffff;
   --accent: #c4b5e8;
   --error: #d93f4c;
+  --success: #007b3d;
+  --motion-fast: 140ms;
+  --motion-normal: 220ms;
+  --motion-slow: 300ms;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #171717;
+  --foreground: #f7f7f2;
+  --card: #202020;
+  --surface: #2b2b2b;
+  --muted-foreground: #c8cbc8;
+  --primary: #00a653;
+  --primary-strong: #008844;
+  --primary-foreground: #ffffff;
+  --accent: #b7a5e2;
+  --error: #ff606a;
+  --success: #2fd27f;
 }
 
 @theme inline {
@@ -67,6 +86,327 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  position: relative;
+  overflow-x: hidden;
+  background-image:
+    linear-gradient(var(--surface) 1px, transparent 1px),
+    linear-gradient(90deg, var(--surface) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(17rem, 0.92fr);
+  gap: clamp(2rem, 6vw, 6rem);
+}
+
+.logo-stage {
+  position: relative;
+  display: grid;
+  min-height: 30rem;
+  place-items: center;
+}
+
+.logo-stage__backdrop {
+  position: absolute;
+  inset: 8% 0 4% 12%;
+  border: 3px solid var(--foreground);
+  background: var(--accent);
+  box-shadow: 12px 12px 0 var(--foreground);
+  transform: rotate(-4deg);
+}
+
+.logo-stage__logo {
+  position: relative;
+  z-index: 1;
+  width: min(28rem, 100%);
+  filter: drop-shadow(7px 7px 0 rgb(23 23 23 / 0.24));
+  animation: logo-enter var(--motion-slow) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pixel {
+  position: absolute;
+  z-index: 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 3px solid var(--foreground);
+  background: var(--primary);
+}
+
+.pixel--one { top: 4%; right: 8%; }
+.pixel--two { bottom: 4%; left: 2%; width: 4rem; background: var(--card); }
+.pixel--three { top: 20%; left: -2%; width: 1.25rem; height: 5rem; background: var(--foreground); }
+
+.instruction-row {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.instruction-row b {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border: 2px solid var(--foreground);
+  background: var(--accent);
+  box-shadow: 2px 2px 0 var(--foreground);
+}
+
+.how-to-dialog[open] {
+  animation: dialog-in var(--motion-normal) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.countdown-number {
+  display: grid;
+  width: min(64vw, 21rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border: clamp(5px, 1vw, 9px) solid var(--foreground);
+  background: var(--primary);
+  color: white;
+  font-size: clamp(8rem, 32vw, 17rem);
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: clamp(10px, 2vw, 18px) clamp(10px, 2vw, 18px) 0 var(--accent);
+  animation: countdown-in 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.game-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: start;
+  gap: 0.75rem;
+}
+
+.stat-chip {
+  display: flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 2px solid var(--foreground);
+  background: var(--card);
+  padding: 0.5rem;
+  font-size: 0.78rem;
+  box-shadow: 3px 3px 0 var(--foreground);
+}
+
+.stat-chip strong { font-size: 1.15rem; }
+
+.timer-tile {
+  display: grid;
+  min-width: 6.25rem;
+  min-height: 5.6rem;
+  place-items: center;
+  border: 3px solid var(--foreground);
+  background: var(--primary);
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 5px 5px 0 var(--accent);
+  transition: transform var(--motion-fast), background-color var(--motion-fast);
+}
+
+.timer-tile--urgent { background: #bd4b00; }
+.timer-tile--critical { animation: timer-pulse 1s steps(2, end) infinite; }
+
+.challenge-card {
+  position: relative;
+  width: 100%;
+  border: 3px solid var(--foreground);
+  background: var(--card);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  box-shadow: 8px 8px 0 var(--accent);
+  animation: challenge-in var(--motion-normal) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.challenge-index {
+  position: absolute;
+  top: -1rem;
+  right: 1rem;
+  border: 2px solid var(--foreground);
+  background: var(--accent);
+  padding: 0.2rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  box-shadow: 2px 2px 0 var(--foreground);
+}
+
+.challenge-title {
+  margin: 0 auto clamp(1.5rem, 4vw, 2.5rem);
+  max-width: 42rem;
+  text-align: center;
+  font-size: clamp(1.35rem, 4vw, 2.2rem);
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.challenge-helper {
+  text-align: center;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.choice-grid--numbers { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.choice-button {
+  display: inline-flex;
+  min-height: 3.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 2px solid var(--foreground);
+  background: var(--card);
+  color: var(--foreground);
+  padding: 0.75rem;
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 900;
+  box-shadow: 3px 3px 0 var(--foreground);
+  transition: transform var(--motion-fast), box-shadow var(--motion-fast), background-color var(--motion-fast);
+}
+
+.choice-button:hover:not(:disabled) { background: var(--accent); }
+.choice-button:active:not(:disabled) { transform: translate(3px, 3px); box-shadow: none; }
+.choice-button:focus-visible { outline: 4px solid var(--accent); outline-offset: 3px; }
+.choice-button:disabled { cursor: default; opacity: 0.62; }
+.choice-button--chosen { background: var(--primary); color: white; opacity: 1 !important; }
+.choice-button--glyph { min-height: clamp(3.25rem, 10vw, 5.25rem); font-size: clamp(1.6rem, 6vw, 3rem); }
+
+.odd-grid,
+.memory-grid,
+.shape-grid {
+  display: grid;
+  max-width: 31rem;
+  gap: clamp(0.4rem, 1.6vw, 0.75rem);
+}
+
+.memory-grid { max-width: 24rem; }
+
+.memory-cell {
+  aspect-ratio: 1;
+  min-width: 0;
+  border: 2px solid var(--foreground);
+  background: var(--surface);
+  box-shadow: 2px 2px 0 var(--foreground);
+  transition: transform var(--motion-fast), background-color var(--motion-fast);
+}
+
+.memory-cell--active { background: var(--primary); transform: scale(0.88); }
+
+.shape-grid span {
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  font-size: clamp(1.15rem, 4vw, 2rem);
+}
+
+.color-word,
+.math-expression {
+  font-size: clamp(3rem, 12vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+}
+
+.sequence-row,
+.pattern-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.4rem, 2vw, 1rem);
+}
+
+.sequence-row span,
+.pattern-row span {
+  display: grid;
+  min-width: clamp(2.5rem, 10vw, 4.5rem);
+  min-height: clamp(2.75rem, 10vw, 4.5rem);
+  place-items: center;
+  border: 2px solid var(--foreground);
+  background: var(--surface);
+  font-size: clamp(1.15rem, 5vw, 2rem);
+  font-weight: 900;
+}
+
+.sequence-missing,
+.pattern-missing { background: var(--accent) !important; }
+
+.side-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.side-choice { min-height: 12rem; flex-direction: column; }
+.side-choice__items { display: flex; max-width: 13rem; flex-wrap: wrap; justify-content: center; gap: 0.2rem; }
+.side-choice__items i { font-style: normal; font-size: 1.15rem; }
+
+.direction-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.feedback-correct { animation: correct-pop var(--motion-normal) ease-out; border-color: var(--success); }
+.feedback-wrong { animation: wrong-shake var(--motion-normal) ease-out; border-color: var(--error); }
+
+.result-card {
+  border: 3px solid var(--foreground);
+  background: var(--card);
+  box-shadow: 10px 10px 0 var(--accent);
+  animation: result-in var(--motion-slow) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.result-score { font-size: clamp(4rem, 18vw, 8rem); font-weight: 900; line-height: 1; color: var(--primary); }
+.result-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+.result-stats > div { display: grid; gap: 0.35rem; border: 2px solid var(--foreground); background: var(--surface); padding: 1rem; }
+.result-stats span { color: var(--muted-foreground); font-size: 0.8rem; }
+.result-stats strong { font-size: 1.6rem; }
+
+@keyframes logo-enter { from { opacity: 0; transform: translateY(16px) rotate(2deg); } }
+@keyframes dialog-in { from { opacity: 0; transform: translateY(16px) scale(0.98); } }
+@keyframes countdown-in { 0% { opacity: 0; transform: scale(0.72); } 35% { opacity: 1; transform: scale(1); } 100% { opacity: 0.9; transform: scale(0.94); } }
+@keyframes challenge-in { from { opacity: 0; transform: translateY(12px); } }
+@keyframes correct-pop { 50% { transform: scale(1.015); } }
+@keyframes wrong-shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+@keyframes timer-pulse { 50% { transform: scale(1.06); } }
+@keyframes result-in { from { opacity: 0; transform: translateY(18px); } }
+
+@media (max-width: 760px) {
+  .landing-grid { grid-template-columns: 1fr; }
+  .logo-stage { order: -1; min-height: 15rem; }
+  .logo-stage__logo { width: min(15rem, 64vw); }
+  .logo-stage__backdrop { inset: 4% 14% 0; }
+  .pixel--three { left: 10%; }
+  .game-header { align-items: center; }
+  .stat-chip { flex-wrap: wrap; gap: 0.25rem; }
+  .stat-chip span { display: none; }
+  .timer-tile { min-width: 5.25rem; min-height: 4.75rem; font-size: 2rem; }
+  .challenge-card { box-shadow: 5px 5px 0 var(--accent); }
+}
+
+@media (max-width: 400px) {
+  .choice-grid--numbers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .side-comparison { gap: 0.55rem; }
+  .side-choice { min-height: 10rem; padding-inline: 0.4rem; }
+}
+
 button,
 input,
 select,
@@ -82,5 +422,11 @@ textarea {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .timer-tile--critical,
+  .feedback-correct,
+  .feedback-wrong {
+    animation: none !important;
   }
 }
