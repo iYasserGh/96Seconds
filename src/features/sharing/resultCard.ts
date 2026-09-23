@@ -132,7 +132,7 @@ export async function downloadResultCard(result: ShareResult) {
 
 export async function shareResult(result: ShareResult) {
   const text = `حليت ${result.correct} مرحلة من ${result.attempted} خلال #96ـثانية
-  تقدر تجيب أعلى مني؟`
+تقدر تجيب أعلى مني؟`
   const url = window.location.href
 
   try {
