@@ -83,7 +83,6 @@ export function App() {
   const startCountdown = () => {
     clearTransition()
     prepareAudio()
-    playSound("countdown")
     savedRun.current = false
     playedFinalCountdown.current = false
     setIsNewBest(false)

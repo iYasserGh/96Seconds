@@ -14,10 +14,15 @@ export const colorClashGenerator: ChallengeGenerator<ColorClashChallenge> = {
     const word = rng.pick(colorChoices)
     const renderedColor = rng.pick(colorChoices.filter((color) => color.name !== word.name))
     const choiceCount = difficulty < 0.3 ? 3 : difficulty < 0.7 ? 4 : 5
+    const wordColor = colorChoices.find((color) => color.name === word.name)!
     const distractors = rng
-      .shuffle(colorChoices.filter((color) => color.name !== renderedColor.name))
-      .slice(0, choiceCount - 1)
-    const choices = rng.shuffle([renderedColor, ...distractors])
+      .shuffle(
+        colorChoices.filter(
+          (color) => color.name !== renderedColor.name && color.name !== word.name,
+        ),
+      )
+      .slice(0, choiceCount - 2)
+    const choices = rng.shuffle([renderedColor, wordColor, ...distractors])
 
     return {
       id: rng.id(),
@@ -34,6 +39,8 @@ export const colorClashGenerator: ChallengeGenerator<ColorClashChallenge> = {
       names.length >= 3 &&
       names.length <= 5 &&
       new Set(names).size === names.length &&
+      names.includes(challenge.data.word) &&
+      names.includes(challenge.data.renderedColor.name) &&
       names.filter((name) => name === challenge.correctAnswer).length === 1
     )
   },

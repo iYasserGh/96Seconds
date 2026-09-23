@@ -44,7 +44,7 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
   }
 
   return (
-    <section className="mx-auto grid min-h-dvh max-w-3xl place-items-center px-4 py-8">
+    <section className="mx-auto flex min-h-dvh max-w-3xl flex-col items-center justify-center gap-5 px-4 py-8">
       <article className="result-card w-full">
         <header className="flex items-center justify-between border-b-[3px] border-foreground p-4 sm:p-5">
           <img src={logoUrl} alt="96 ثانية" className="h-16 w-16 object-contain" />
@@ -113,6 +113,16 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
           )}
         </div>
       </article>
+      <footer className="text-center text-sm font-semibold text-muted-foreground">
+        <a
+          href="https://ysg.sa"
+          target="_blank"
+          rel="noreferrer"
+          className="underline decoration-2 underline-offset-4 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+        >
+          ياسر الغامدي
+        </a>
+      </footer>
     </section>
   )
 }

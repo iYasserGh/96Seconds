@@ -2,6 +2,7 @@ import { Info, Moon, Sun, Volume2, VolumeX } from "lucide-react"
 import { useRef } from "react"
 
 import logoUrl from "../../../assets/brand/logo.png"
+import nationalDayLogoBlackUrl from "../../../assets/brand/national-day-96-logo-black.webp"
 import nationalDayLogoUrl from "../../../assets/brand/national-day-96-logo.webp"
 
 import { HowToPlayDialog, type HowToPlayDialogHandle } from "@/components/game/HowToPlayDialog"
@@ -27,7 +28,11 @@ export function LandingScreen({
   return (
     <section className="landing-screen relative mx-auto flex min-h-dvh max-w-6xl flex-col px-4 py-4 sm:px-8 sm:py-6">
       <header className="flex items-center justify-between gap-3">
-        <img src={nationalDayLogoUrl} alt="عزنا بطبعنا" className="h-8 w-auto sm:h-10" />
+        <img
+          src={resolvedTheme === "dark" ? nationalDayLogoUrl : nationalDayLogoBlackUrl}
+          alt="اليوم الوطني السعودي، عزنا بطبعنا"
+          className="h-10 w-auto sm:h-12"
+        />
         <nav aria-label="إعدادات سريعة" className="flex gap-2">
           <Button
             variant="secondary"
@@ -86,8 +91,16 @@ export function LandingScreen({
         </div>
       </div>
 
-      <footer className="flex items-center justify-between border-t-2 border-foreground pt-4 text-xs font-semibold text-muted-foreground sm:text-sm">
+      <footer className="flex flex-wrap items-center justify-between gap-3 border-t-2 border-foreground pt-4 text-xs font-semibold text-muted-foreground sm:text-sm">
         <span>اليوم الوطني السعودي 96</span>
+        <a
+          href="https://ysg.sa"
+          target="_blank"
+          rel="noreferrer"
+          className="underline decoration-2 underline-offset-4 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+        >
+          ياسر الغامدي
+        </a>
         <span>لا تسجيل، لا انتظار</span>
       </footer>
       <HowToPlayDialog ref={dialogRef} />
