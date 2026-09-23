@@ -72,7 +72,13 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
             <div><span>عدد الجولات</span><strong>{stats.gamesPlayed}</strong></div>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Button size="lg" onClick={onReplay}>
+            <Button
+              size="lg"
+              onClick={() => {
+                trackUmamiEvent("replay_game")
+                onReplay()
+              }}
+            >
               <RotateCcw aria-hidden="true" />
               العب من جديد
             </Button>
