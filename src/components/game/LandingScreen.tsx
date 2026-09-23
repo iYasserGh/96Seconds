@@ -69,8 +69,8 @@ export function LandingScreen({
             تحديات سريعة، جولة واحدة
           </div> */}
           <div className="space-y-4">
-            <h1 className="max-w-3xl text-4xl font-black leading-[1.18] text-balance sm:text-6xl lg:text-7xl">
-              كم تقدر تخلص مرحلة في
+            <h1 className="max-w-3xl text-4xl font-black leading-[1.5] text-balance sm:text-6xl lg:text-7xl lg:mb-8">
+              كم تقدر تخلص تحدي في
               <span className="text-primary"> 96 ثانية؟</span>
             </h1>
             <p className="max-w-xl text-base leading-8 text-muted-foreground sm:text-xl">

@@ -90,7 +90,7 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
               size="sm"
               variant="ghost"
               disabled={busy}
-              onClick={() => perform(() => downloadResultCard(result), "تم تحميل صورة النتيجة، ننتظرك في هاشتاق #96ـثانية على تويتر!")}
+              onClick={() => perform(() => downloadResultCard(result), "تم تحميل صورة النتيجة.")}
             >
               <Download aria-hidden="true" size={18} />
               حمّل صورة النتيجة
@@ -99,7 +99,7 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
               size="sm"
               variant="ghost"
               disabled={busy}
-              onClick={() => perform(copyGameLink, "نُسخ رابط اللعبة.")}
+              onClick={() => perform(copyGameLink, "تم نصخ رابط اللعبة.")}
             >
               <Copy aria-hidden="true" size={18} />
               انسخ الرابط
