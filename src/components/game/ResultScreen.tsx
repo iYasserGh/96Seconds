@@ -62,7 +62,7 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
               </div>
             )}
             <div className="result-score" dir="ltr">{state.correct} / {state.attempted}</div>
-            <p className="mt-2 text-muted-foreground">حللت {state.correct} مرحلة من {state.attempted}</p>
+            <p className="mt-2 text-muted-foreground">{state.correct > 25 && "يارهيب!"} حليت {state.correct} سؤال من {state.attempted}!</p>
           </div>
           <div className="result-stats">
             <div><span>أطول ستريك</span><strong>{state.longestStreak}</strong></div>
