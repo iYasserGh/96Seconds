@@ -131,24 +131,16 @@ export async function downloadResultCard(result: ShareResult) {
 }
 
 export async function shareResult(result: ShareResult) {
-  const text = `حليت ${result.correct} مرحلة من ${result.attempted} خلال #96ـثانية
-تقدر تجيب أعلى مني؟`
-  const url = window.location.href
-
   try {
     const blob = await generateResultCard(result)
     const file = new File([blob], "96-seconds-result.png", { type: "image/png" })
     if (navigator.canShare?.({ files: [file] })) {
-      await navigator.share({ files: [file], text, url, title: "96 ثانية" })
+      await navigator.share({ files: [file] })
       return "shared" as const
     }
-  } catch {
-    // Continue to text sharing or download fallback.
-  }
-
-  if (navigator.share) {
-    await navigator.share({ text, url, title: "96 ثانية" })
-    return "shared" as const
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") throw error
+    // Continue to the image download fallback.
   }
 
   await downloadResultCard(result)
