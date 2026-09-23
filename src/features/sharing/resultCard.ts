@@ -94,8 +94,8 @@ export async function generateResultCard(result: ShareResult) {
   context.strokeStyle = "#171717"
   context.lineWidth = 7
   context.strokeRect(130, 405, 820, 300)
-  drawCenteredText(context, `${result.correct} / ${result.attempted}`, 540, "900 138px Alexandria", "#ffffff")
-  drawCenteredText(context, `حللت ${result.correct} مرحلة خلال 96 ثانية`, 650, "600 40px Alexandria", "#ffffff")
+  drawCenteredText(context, `${result.attempted} / ${result.correct}`, 540, "900 138px Alexandria", "#ffffff")
+  drawCenteredText(context, `حليت ${result.correct} مرحلة خلال 96 ثانية`, 650, "600 40px Alexandria", "#ffffff")
 
   context.fillStyle = "#c4b5e8"
   context.fillRect(250, 755, 580, 220)
