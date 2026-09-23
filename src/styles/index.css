@@ -280,12 +280,15 @@ button {
   transition: transform var(--motion-fast), box-shadow var(--motion-fast), background-color var(--motion-fast);
 }
 
-.choice-button:hover:not(:disabled) { background: var(--accent); }
 .choice-button:active:not(:disabled) { transform: translate(3px, 3px); box-shadow: none; }
 .choice-button:focus-visible { outline: 4px solid var(--accent); outline-offset: 3px; }
 .choice-button:disabled { cursor: default; opacity: 0.62; }
 .choice-button--chosen { background: var(--primary); color: white; opacity: 1 !important; }
 .choice-button--glyph { min-height: clamp(3.25rem, 10vw, 5.25rem); font-size: clamp(1.6rem, 6vw, 3rem); }
+
+@media (hover: hover) and (pointer: fine) {
+  .choice-button:hover:not(:disabled) { background: var(--accent); }
+}
 
 .odd-grid,
 .memory-grid,
