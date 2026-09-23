@@ -23,5 +23,11 @@ export function generateNextChallenge(
     }
   }
 
-  throw new Error("تعذّر توليد تحدٍ صالح")
+  return {
+    id: rng.id(),
+    type: "quick-math",
+    title: "حل العملية",
+    data: { expression: "6 + 6", choices: [10, 11, 12, 13] },
+    correctAnswer: 12,
+  }
 }

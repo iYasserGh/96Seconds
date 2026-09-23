@@ -366,6 +366,22 @@ button {
 .feedback-correct { animation: correct-pop var(--motion-normal) ease-out; border-color: var(--success); }
 .feedback-wrong { animation: wrong-shake var(--motion-normal) ease-out; border-color: var(--error); }
 
+.feedback-label {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  border: 2px solid var(--foreground);
+  padding: 0.35rem 0.65rem;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 900;
+  box-shadow: 2px 2px 0 var(--foreground);
+}
+
+.feedback-label--correct { background: var(--success); }
+.feedback-label--wrong,
+.feedback-label--skip { background: var(--error); }
+
 .result-card {
   border: 3px solid var(--foreground);
   background: var(--card);

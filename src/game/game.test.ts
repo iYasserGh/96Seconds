@@ -4,7 +4,7 @@ import { quickMathGenerator } from "@/challenges/quick-math/generator"
 import { appendRecentType, chooseChallengeType } from "@/challenges/scheduler"
 import { getDifficulty, scaleDifficulty } from "@/game/difficulty"
 import { createSeededRandom } from "@/game/random"
-import { createInitialGameState, gameReducer } from "@/game/reducer"
+import { createInitialGameState, gameReducer, type GameState } from "@/game/reducer"
 import { createEndTime, getDisplayedSeconds } from "@/game/timer"
 
 describe("difficulty", () => {
@@ -73,7 +73,7 @@ describe("game reducer", () => {
   })
 
   it("resets the streak on wrong answers and skips", () => {
-    let state = {
+    let state: GameState = {
       ...createInitialGameState(),
       status: "playing" as const,
       currentChallenge: challenge,

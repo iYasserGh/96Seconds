@@ -23,6 +23,15 @@ export function GameScreen({ state, onAnswer, onSkip }: GameScreenProps) {
             {String(state.attempted + 1).padStart(2, "0")}
           </div>
           <h1 className="challenge-title">{state.currentChallenge.title}</h1>
+          {state.feedback && (
+            <div className={`feedback-label feedback-label--${state.feedback}`} role="status">
+              {state.feedback === "correct"
+                ? "إجابة صحيحة"
+                : state.feedback === "wrong"
+                  ? "إجابة غير صحيحة"
+                  : "تخطيت التحدي"}
+            </div>
+          )}
           <ChallengeRenderer
             key={state.currentChallenge.id}
             challenge={state.currentChallenge}

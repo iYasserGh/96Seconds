@@ -111,7 +111,7 @@ export async function downloadResultCard(result: ShareResult) {
   link.href = url
   link.download = `96-seconds-${result.correct}.png`
   link.click()
-  URL.revokeObjectURL(url)
+  window.setTimeout(() => URL.revokeObjectURL(url), 1_000)
 }
 
 export async function shareResult(result: ShareResult) {
@@ -139,5 +139,23 @@ export async function shareResult(result: ShareResult) {
 }
 
 export async function copyGameLink() {
-  await navigator.clipboard.writeText(window.location.href)
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(window.location.href)
+      return
+    } catch {
+      // Continue to the local fallback below.
+    }
+  }
+
+  const input = document.createElement("textarea")
+  input.value = window.location.href
+  input.setAttribute("readonly", "")
+  input.style.position = "fixed"
+  input.style.opacity = "0"
+  document.body.appendChild(input)
+  input.select()
+  const copied = document.execCommand("copy")
+  input.remove()
+  if (!copied) throw new Error("Copy is unavailable")
 }
