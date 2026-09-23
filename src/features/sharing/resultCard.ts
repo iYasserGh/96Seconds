@@ -64,20 +64,30 @@ export async function generateResultCard(result: ShareResult) {
     context.stroke()
   }
 
-  const cardX = (canvas.width - 928) / 2
+  const cardWidth = 928
+  const cardX = (canvas.width - cardWidth) / 2
   const cardY = (canvas.height - 1120) / 2
   context.fillStyle = "#ffffff"
-  context.fillRect(cardX, cardY, 928, 1120)
+  context.fillRect(cardX, cardY, cardWidth, 1120)
   context.strokeStyle = "#171717"
   context.lineWidth = 8
-  context.strokeRect(cardX, cardY, 928, 1120)
+  context.strokeRect(cardX, cardY, cardWidth, 1120)
 
+  const logoEdgeGap = 50
+  const gameLogoWidth = 190
   const logoY = 157
   const logoHeight = 190
   const logoCenterY = logoY + logoHeight / 2
+  const nationalLogoWidth = 220
   const nationalLogoHeight = 101
-  context.drawImage(logo, 90, logoY, 190, logoHeight)
-  context.drawImage(nationalLogo, 700, logoCenterY - nationalLogoHeight / 2, 220, nationalLogoHeight)
+  context.drawImage(logo, cardX + logoEdgeGap, logoY, gameLogoWidth, logoHeight)
+  context.drawImage(
+    nationalLogo,
+    cardX + cardWidth - logoEdgeGap - nationalLogoWidth,
+    logoCenterY - nationalLogoHeight / 2,
+    nationalLogoWidth,
+    nationalLogoHeight,
+  )
 
   context.fillStyle = "#006c35"
   context.fillRect(130, 405, 820, 300)
