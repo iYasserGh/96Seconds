@@ -5,6 +5,7 @@ import { GameScreen } from "@/components/game/GameScreen"
 import { LandingScreen } from "@/components/game/LandingScreen"
 import { ResultScreen } from "@/components/game/ResultScreen"
 import { UmamiAnalytics } from "@/features/analytics/UmamiAnalytics"
+import { trackUmamiEvent } from "@/features/analytics/trackEvent"
 import { useGameAudio } from "@/features/audio/useGameAudio"
 import {
   loadLocalStats,
@@ -52,6 +53,22 @@ export function App() {
     if (state.status !== "finished" || savedRun.current) return
     savedRun.current = true
     const result = recordCompletedGame(stats, state)
+    const accuracy = state.attempted === 0
+      ? 0
+      : Math.round((state.correct / state.attempted) * 100)
+    trackUmamiEvent("end_game", {
+      correct: state.correct,
+      attempted: state.attempted,
+      missed: Math.max(0, state.attempted - state.correct),
+      accuracy,
+      longest_streak: state.longestStreak,
+      is_new_best: result.isNewBest,
+      best_correct: result.stats.bestCorrect,
+      best_attempted: result.stats.bestAttempted,
+      best_streak: result.stats.bestStreak,
+      games_played: result.stats.gamesPlayed,
+      duration_seconds: GAME_DURATION_SECONDS,
+    })
     setIsNewBest(result.isNewBest)
     saveLocalStats(result.stats)
     setStats(result.stats)
@@ -83,6 +100,7 @@ export function App() {
 
   const startCountdown = () => {
     clearTransition()
+    trackUmamiEvent("start_game")
     prepareAudio()
     savedRun.current = false
     playedFinalCountdown.current = false

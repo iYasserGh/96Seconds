@@ -1,5 +1,10 @@
 import { useEffect } from "react"
 
+import {
+  clearPendingUmamiEvents,
+  flushPendingUmamiEvents,
+} from "@/features/analytics/trackEvent"
+
 const SCRIPT_ID = "umami-analytics-script"
 
 export function UmamiAnalytics() {
@@ -16,7 +21,11 @@ export function UmamiAnalytics() {
     script.defer = true
     script.dataset.websiteId = websiteId
     script.dataset.autoTrack = "true"
-    script.onerror = () => script.remove()
+    script.onload = flushPendingUmamiEvents
+    script.onerror = () => {
+      clearPendingUmamiEvents()
+      script.remove()
+    }
     document.head.appendChild(script)
 
     return () => script.remove()

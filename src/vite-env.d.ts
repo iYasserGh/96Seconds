@@ -8,3 +8,9 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+interface Window {
+  umami?: {
+    track(eventName: string, eventData?: Record<string, string | number | boolean>): void
+  }
+}

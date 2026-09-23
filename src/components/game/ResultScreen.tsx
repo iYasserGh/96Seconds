@@ -4,6 +4,7 @@ import { useState } from "react"
 import logoUrl from "../../../assets/brand/logo.png"
 
 import { Button } from "@/components/ui/Button"
+import { trackUmamiEvent } from "@/features/analytics/trackEvent"
 import type { LocalStats } from "@/features/storage/localStats"
 import {
   copyGameLink,
@@ -79,7 +80,10 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
               size="lg"
               variant="secondary"
               disabled={busy}
-              onClick={() => perform(() => shareResult(result), "نتيجتك جاهزة للمشاركة.")}
+              onClick={() => {
+                trackUmamiEvent("share", { action: "share" })
+                void perform(() => shareResult(result), "نتيجتك جاهزة للمشاركة.")
+              }}
             >
               <Share2 aria-hidden="true" />
               شارك النتيجة
@@ -90,7 +94,10 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
               size="sm"
               variant="ghost"
               disabled={busy}
-              onClick={() => perform(() => downloadResultCard(result), "تم تحميل صورة النتيجة.")}
+              onClick={() => {
+                trackUmamiEvent("share", { action: "download_image" })
+                void perform(() => downloadResultCard(result), "تم تحميل صورة النتيجة.")
+              }}
             >
               <Download aria-hidden="true" size={18} />
               حمّل صورة النتيجة
@@ -99,7 +106,10 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
               size="sm"
               variant="ghost"
               disabled={busy}
-              onClick={() => perform(copyGameLink, "تم نصخ رابط اللعبة.")}
+              onClick={() => {
+                trackUmamiEvent("share", { action: "copy_link" })
+                void perform(copyGameLink, "تم نصخ رابط اللعبة.")
+              }}
             >
               <Copy aria-hidden="true" size={18} />
               انسخ الرابط
@@ -118,6 +128,7 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
           href="https://ysg.sa"
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackUmamiEvent("copyright_clicked", { location: "result" })}
           className="underline decoration-2 underline-offset-4 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
         >
           ياسر الغامدي

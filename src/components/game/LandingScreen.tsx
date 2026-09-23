@@ -7,6 +7,7 @@ import nationalDayLogoUrl from "../../../assets/brand/national-day-96-logo.webp"
 
 import { HowToPlayDialog, type HowToPlayDialogHandle } from "@/components/game/HowToPlayDialog"
 import { Button } from "@/components/ui/Button"
+import { trackUmamiEvent } from "@/features/analytics/trackEvent"
 
 interface LandingScreenProps {
   onStart(): void
@@ -97,6 +98,7 @@ export function LandingScreen({
           href="https://ysg.sa"
           target="_blank"
           rel="noreferrer"
+          onClick={() => trackUmamiEvent("copyright_clicked", { location: "landing" })}
           className="underline decoration-2 underline-offset-4 hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
         >
           ياسر الغامدي
