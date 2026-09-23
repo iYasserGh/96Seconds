@@ -15,9 +15,9 @@ export function GameScreen({ state, onAnswer, onSkip }: GameScreenProps) {
   if (!state.currentChallenge) return null
 
   return (
-    <section className="mx-auto flex min-h-dvh w-full max-w-4xl flex-col px-4 py-4 sm:px-7 sm:py-6">
+    <section className="mx-auto flex h-dvh max-h-dvh w-full max-w-4xl flex-col overflow-y-auto px-4 py-3 sm:px-7 sm:py-6">
       <GameHeader seconds={state.displayedSeconds} correct={state.correct} streak={state.currentStreak} />
-      <div className="flex flex-1 items-center py-5 sm:py-8">
+      <div className="flex flex-1 flex-col justify-center gap-3 py-3 sm:gap-5 sm:py-8">
         <article className={`challenge-card feedback-${state.feedback ?? "idle"}`} aria-live="polite">
           <div className="challenge-index" aria-hidden="true">
             {String(state.attempted + 1).padStart(2, "0")}
@@ -39,12 +39,12 @@ export function GameScreen({ state, onAnswer, onSkip }: GameScreenProps) {
             onAnswer={onAnswer}
           />
         </article>
-      </div>
-      <div className="flex justify-center">
-        <Button variant="secondary" size="sm" disabled={state.isLocked} onClick={onSkip}>
-          <SkipForward aria-hidden="true" size={18} />
-          تخطَّ
-        </Button>
+        <div className="flex shrink-0 justify-center">
+          <Button variant="secondary" size="sm" disabled={state.isLocked} onClick={onSkip}>
+            <SkipForward aria-hidden="true" size={18} />
+            تخطَّ
+          </Button>
+        </div>
       </div>
     </section>
   )
