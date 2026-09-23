@@ -70,11 +70,11 @@ export function LandingScreen({
           </div> */}
           <div className="space-y-4">
             <h1 className="max-w-3xl text-4xl font-black leading-[1.18] text-balance sm:text-6xl lg:text-7xl">
-              كم تقدر تحل في
+              كم تقدر تخلص مرحلة في
               <span className="text-primary"> 96 ثانية؟</span>
             </h1>
             <p className="max-w-xl text-base leading-8 text-muted-foreground sm:text-xl">
-              ورينا شطارتك، وحل اكبر عدد من التحديات قبل انتهاء الوقت
+              ورينا شطارتك، وحل اكبر عدد من التحديات قبل ماينتهي الوقت
             </p>
           </div>
           <Button size="lg" className="w-full sm:w-auto" onClick={onStart}>
