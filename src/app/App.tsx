@@ -4,6 +4,7 @@ import { CountdownScreen } from "@/components/game/CountdownScreen"
 import { GameScreen } from "@/components/game/GameScreen"
 import { LandingScreen } from "@/components/game/LandingScreen"
 import { ResultScreen } from "@/components/game/ResultScreen"
+import { UmamiAnalytics } from "@/features/analytics/UmamiAnalytics"
 import { useGameAudio } from "@/features/audio/useGameAudio"
 import {
   loadLocalStats,
@@ -149,6 +150,7 @@ export function App() {
 
   return (
     <main className="app-shell min-h-dvh bg-background text-foreground">
+      <UmamiAnalytics />
       {state.status === "idle" && (
         <LandingScreen
           onStart={startCountdown}
