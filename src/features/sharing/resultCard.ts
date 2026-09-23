@@ -64,41 +64,39 @@ export async function generateResultCard(result: ShareResult) {
     context.stroke()
   }
 
-  context.fillStyle = "#171717"
-  context.fillRect(76, 86, 928, 1120)
-  context.fillStyle = "#c4b5e8"
-  context.fillRect(58, 68, 928, 1120)
+  const cardX = (canvas.width - 928) / 2
+  const cardY = (canvas.height - 1120) / 2
   context.fillStyle = "#ffffff"
-  context.fillRect(40, 50, 928, 1120)
+  context.fillRect(cardX, cardY, 928, 1120)
   context.strokeStyle = "#171717"
   context.lineWidth = 8
-  context.strokeRect(40, 50, 928, 1120)
+  context.strokeRect(cardX, cardY, 928, 1120)
 
-  context.drawImage(logo, 90, 92, 190, 190)
-  context.drawImage(nationalLogo, 700, 112, 220, 101)
+  context.drawImage(logo, 90, 157, 190, 190)
+  context.drawImage(nationalLogo, 700, 177, 220, 101)
 
   context.fillStyle = "#006c35"
-  context.fillRect(130, 340, 820, 300)
+  context.fillRect(130, 405, 820, 300)
   context.strokeStyle = "#171717"
   context.lineWidth = 7
-  context.strokeRect(130, 340, 820, 300)
-  drawCenteredText(context, `${result.correct} / ${result.attempted}`, 475, "900 138px Alexandria", "#ffffff")
-  drawCenteredText(context, `حللت ${result.correct} مرحلة خلال 96 ثانية`, 585, "600 40px Alexandria", "#ffffff")
+  context.strokeRect(130, 405, 820, 300)
+  drawCenteredText(context, `${result.correct} / ${result.attempted}`, 540, "900 138px Alexandria", "#ffffff")
+  drawCenteredText(context, `حللت ${result.correct} مرحلة خلال 96 ثانية`, 650, "600 40px Alexandria", "#ffffff")
 
   context.fillStyle = "#c4b5e8"
-  context.fillRect(250, 690, 580, 220)
+  context.fillRect(250, 755, 580, 220)
   context.strokeStyle = "#171717"
-  context.strokeRect(250, 690, 580, 220)
-  drawCenteredText(context, "أطول سلسلة", 755, "600 34px Alexandria", "#171717")
-  drawCenteredText(context, String(result.longestStreak), 845, "900 78px Alexandria", "#171717")
+  context.strokeRect(250, 755, 580, 220)
+  drawCenteredText(context, "أطول سلسلة", 820, "600 34px Alexandria", "#171717")
+  drawCenteredText(context, String(result.longestStreak), 910, "900 78px Alexandria", "#171717")
 
-  drawCenteredText(context, "تقدر تجيب أعلى مني؟", 1000, "900 48px Alexandria", "#006c35")
+  drawCenteredText(context, "تقدر تجيب أعلى مني؟", 1065, "900 48px Alexandria", "#006c35")
   context.direction = "ltr"
   context.textAlign = "center"
   context.font = "600 28px Alexandria"
   context.fillStyle = "#4c514e"
   const displayUrl = window.location.host || window.location.href.replace(/^https?:\/\//, "").replace(/\/$/, "")
-  context.fillText(displayUrl, 540, 1080)
+  context.fillText(displayUrl, 540, 1145)
 
   return new Promise<Blob>((resolve, reject) => {
     canvas.toBlob((blob) => {
