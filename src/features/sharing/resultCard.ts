@@ -1,6 +1,8 @@
 import logoUrl from "../../../assets/brand/logo.png"
 import nationalDayLogoBlackUrl from "../../../assets/brand/national-day-96-logo-black.webp"
 
+import { formatChallengeCount } from "@/lib/formatChallengeCount"
+
 export interface ShareResult {
   correct: number
   attempted: number
@@ -95,7 +97,7 @@ export async function generateResultCard(result: ShareResult) {
   context.lineWidth = 7
   context.strokeRect(130, 405, 820, 300)
   drawCenteredText(context, `${result.attempted} / ${result.correct}`, 540, "900 138px Alexandria", "#ffffff")
-  drawCenteredText(context, `حليت ${result.correct} مرحلة خلال 96 ثانية`, 650, "600 40px Alexandria", "#ffffff")
+  drawCenteredText(context, `حليت ${formatChallengeCount(result.correct)} خلال 96 ثانية`, 650, "600 40px Alexandria", "#ffffff")
 
   context.fillStyle = "#c4b5e8"
   context.fillRect(250, 755, 580, 220)

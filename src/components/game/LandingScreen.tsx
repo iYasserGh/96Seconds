@@ -71,7 +71,7 @@ export function LandingScreen({
           </div> */}
           <div className="space-y-4">
             <h1 className="max-w-3xl text-4xl font-black leading-[1.5] text-balance sm:text-6xl lg:text-7xl lg:mb-8">
-              كم تقدر تخلص تحدي في
+              كم تقدر تحل تحدي في
               <span className="text-primary"> 96 ثانية؟</span>
             </h1>
             <p className="max-w-xl text-base leading-8 text-muted-foreground sm:text-xl">
