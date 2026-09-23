@@ -64,17 +64,17 @@ export function LandingScreen({
 
       <div className="landing-grid flex flex-1 items-center py-8 sm:py-12">
         <div className="landing-copy relative z-10 space-y-7">
-          <div className="inline-flex items-center gap-2 border-2 border-foreground bg-accent px-3 py-2 text-xs font-bold shadow-[3px_3px_0_var(--foreground)] sm:text-sm">
+          {/* <div className="inline-flex items-center gap-2 border-2 border-foreground bg-accent px-3 py-2 text-xs font-bold shadow-[3px_3px_0_var(--foreground)] sm:text-sm">
             <span className="h-2.5 w-2.5 bg-primary" aria-hidden="true" />
             تحديات سريعة، جولة واحدة
-          </div>
+          </div> */}
           <div className="space-y-4">
             <h1 className="max-w-3xl text-4xl font-black leading-[1.18] text-balance sm:text-6xl lg:text-7xl">
-              كم مرحلة تحلّ
-              <span className="text-primary"> في 96 ثانية؟</span>
+              كم تقدر تحل في
+              <span className="text-primary"> 96 ثانية؟</span>
             </h1>
             <p className="max-w-xl text-base leading-8 text-muted-foreground sm:text-xl">
-              اختبر سرعتك وتركيزك. كل إجابة صحيحة تقرّبك من تحدٍ أصعب.
+              ورينا شطارتك، وحل اكبر عدد من التحديات قبل انتهاء الوقت
             </p>
           </div>
           <Button size="lg" className="w-full sm:w-auto" onClick={onStart}>
@@ -101,7 +101,7 @@ export function LandingScreen({
         >
           ياسر الغامدي
         </a>
-        <span>لا تسجيل، لا انتظار</span>
+        {/* <span>لا تسجيل، لا انتظار</span> */}
       </footer>
       <HowToPlayDialog ref={dialogRef} />
     </section>

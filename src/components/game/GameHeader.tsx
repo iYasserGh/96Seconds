@@ -14,7 +14,7 @@ export function GameHeader({ seconds, correct, streak }: GameHeaderProps) {
     <header className="game-header" aria-label="حالة الجولة">
       <div className="stat-chip">
         <Flame aria-hidden="true" size={19} />
-        <span>السلسلة</span>
+        <span>الستريك</span>
         <strong>{streak}</strong>
       </div>
       <div

@@ -101,7 +101,7 @@ export async function generateResultCard(result: ShareResult) {
   context.fillRect(250, 755, 580, 220)
   context.strokeStyle = "#171717"
   context.strokeRect(250, 755, 580, 220)
-  drawCenteredText(context, "أطول سلسلة", 820, "600 34px Alexandria", "#171717")
+  drawCenteredText(context, "أطول ستريك", 820, "600 34px Alexandria", "#171717")
   drawCenteredText(context, String(result.longestStreak), 910, "900 78px Alexandria", "#171717")
 
   drawCenteredText(context, "تقدر تجيب أعلى مني؟", 1065, "900 48px Alexandria", "#006c35")
@@ -131,7 +131,8 @@ export async function downloadResultCard(result: ShareResult) {
 }
 
 export async function shareResult(result: ShareResult) {
-  const text = `حللت ${result.correct} مرحلة من ${result.attempted} خلال 96 ثانية. تقدر تجيب أعلى مني؟`
+  const text = `حليت ${result.correct} مرحلة من ${result.attempted} خلال #96ـثانية
+  تقدر تجيب أعلى مني؟`
   const url = window.location.href
 
   try {

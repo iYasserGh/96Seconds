@@ -65,7 +65,7 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
             <p className="mt-2 text-muted-foreground">حللت {state.correct} مرحلة من {state.attempted}</p>
           </div>
           <div className="result-stats">
-            <div><span>أطول سلسلة</span><strong>{state.longestStreak}</strong></div>
+            <div><span>أطول ستريك</span><strong>{state.longestStreak}</strong></div>
             <div><span>الدقة</span><strong>{accuracy}%</strong></div>
             <div><span>أفضل نتيجة</span><strong>{stats.bestCorrect}</strong></div>
             <div><span>عدد الجولات</span><strong>{stats.gamesPlayed}</strong></div>
@@ -90,10 +90,10 @@ export function ResultScreen({ state, stats, isNewBest, onReplay }: ResultScreen
               size="sm"
               variant="ghost"
               disabled={busy}
-              onClick={() => perform(() => downloadResultCard(result), "حُمّلت صورة النتيجة.")}
+              onClick={() => perform(() => downloadResultCard(result), "تم تحميل صورة النتيجة، ننتظرك في هاشتاق #96ـثانية على تويتر!")}
             >
               <Download aria-hidden="true" size={18} />
-              حمّل الصورة
+              حمّل صورة النتيجة
             </Button>
             <Button
               size="sm"

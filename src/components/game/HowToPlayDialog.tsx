@@ -42,7 +42,7 @@ export const HowToPlayDialog = forwardRef<HowToPlayDialogHandle>(function HowToP
       </div>
       <ol className="grid gap-4 p-5 text-sm leading-7 sm:text-base">
         <li className="instruction-row"><b>1</b><span>حل أكبر عدد ممكن قبل انتهاء 96 ثانية.</span></li>
-        <li className="instruction-row"><b>2</b><span>الإجابة الخاطئة أو التخطي يقطع السلسلة.</span></li>
+        <li className="instruction-row"><b>2</b><span>الإجابة الخاطئة أو التخطي يقطع الستريك.</span></li>
         <li className="instruction-row"><b>3</b><span>تزداد صعوبة التحديات كلما تقدمت.</span></li>
       </ol>
     </dialog>

@@ -1,5 +1,5 @@
 export const GAME_DURATION_SECONDS = 96
-export const DIFFICULTY_CAP = 30
+export const DIFFICULTY_CAP = 15
 export const MAX_GENERATION_ATTEMPTS = 10
 export const RECENT_CHALLENGE_LIMIT = 2
 
