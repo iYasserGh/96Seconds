@@ -72,8 +72,12 @@ export async function generateResultCard(result: ShareResult) {
   context.lineWidth = 8
   context.strokeRect(cardX, cardY, 928, 1120)
 
-  context.drawImage(logo, 90, 157, 190, 190)
-  context.drawImage(nationalLogo, 700, 177, 220, 101)
+  const logoY = 157
+  const logoHeight = 190
+  const logoCenterY = logoY + logoHeight / 2
+  const nationalLogoHeight = 101
+  context.drawImage(logo, 90, logoY, 190, logoHeight)
+  context.drawImage(nationalLogo, 700, logoCenterY - nationalLogoHeight / 2, 220, nationalLogoHeight)
 
   context.fillStyle = "#006c35"
   context.fillRect(130, 405, 820, 300)
