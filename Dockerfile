@@ -7,6 +7,7 @@ RUN npm ci
 
 COPY index.html vite.config.ts tsconfig.json tsconfig.app.json tsconfig.node.json ./
 COPY assets ./assets
+COPY public ./public
 COPY src ./src
 
 ARG VITE_UMAMI_SCRIPT_URL=""
