@@ -1,6 +1,6 @@
 # 96 Seconds | 96 ثانية
 
-![96 Seconds](public/og-thumbnail.png)
+![96 Seconds](public/website-thumbnail.png)
 
 **96 Seconds** is a fast-paced Arabic brain game created for Saudi National Day 96. Players have 96 seconds to solve as many varied mini-challenges as possible, build their streak, beat their personal best, and share their results with friends.
 
